@@ -48,7 +48,7 @@ Archive:  xlsx-getijtabellen-taw-2024.zip
   inflating: xlsx-getijtabellen-taw-2024/zeebrugge2024-getijtabel-mTAW.xlsx 
 ```
 
-### step 4: voer het script uit en geef het de naam van de uitgepakte
+### step 4: voer het script uit en geef het de naam van het uitgepakte ZIP bestand mee
 
 ```console
 (getijden) % python getijden.py xlsx-getijtabellen-taw-2024
