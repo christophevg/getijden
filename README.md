@@ -10,7 +10,7 @@ Ik zocht een calendar-compatibele versie van de getijden nabij Zeebrugge, en na 
 
 Deze repo bevat een ICS versie van de getijden zoals ze gepubliceerd worden door het [Agentschap Maritieme Dienstverlening en Kust](https://www.agentschapmdk.be/nl/publicaties?category=nautische-publicaties). Daar vind je ZIP bestanden met Excel bestanden met de getijden voor een heel jaar. De software in deze repo verwerkt deze Excel bestanden tot [ICS bestanden](ics-getijdentabellen-taw-2024) dat je kan importeren in je calendar software.
 
-👉 [Getijden nabij Zeebrugge 2024](ics-getijdentabellen-taw-2024/zeebrugge2024-getijtabel-mTAW.ics)
+👉 [Getijden nabij Zeebrugge 2024](https://raw.githubusercontent.com/christophevg/getijden/master/ics-getijtabellen-taw-2024/zeebrugge2024-getijtabel-mTAW.ics)
 
 ## Zelf de software gebruiken
 
