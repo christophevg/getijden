@@ -14,14 +14,14 @@ Deze repo bevat een ICS versie van de getijden zoals ze gepubliceerd worden door
 
 ## Zelf de software gebruiken
 
-stap 1: clone deze repo
+### stap 1: clone deze repo
 
 ```console
 % git clone https://github.com/christophevg/getijden
 % cd getijden
 ```
 
-stap 2: installeer de nodige modules (bij voorkeur in een virtuele omgeving, zoals hier met `pyenv`)
+### stap 2: installeer de nodige modules (bij voorkeur in een virtuele omgeving, zoals hier met `pyenv`)
 
 ```console
 % pyenv virtualenv getijden
@@ -29,7 +29,7 @@ stap 2: installeer de nodige modules (bij voorkeur in een virtuele omgeving, zoa
 (getijden) % pip install -r requirements.txt
 ```
 
-stap 3: download het ZIP bestand van [Agentschap Maritieme Dienstverlening en Kust](https://www.agentschapmdk.be/nl/publicaties?category=nautische-publicaties): e.g. [(ZIP) Getijtabellen TAW 2024](https://www.agentschapmdk.be/nl/bijlage/9b98b44a-3f4c-4ad5-8ca2-35f427631cf2/xlsx-getijtabellen-taw-2024)
+### stap 3: download het ZIP bestand van [Agentschap Maritieme Dienstverlening en Kust](https://www.agentschapmdk.be/nl/publicaties?category=nautische-publicaties): e.g. [(ZIP) Getijtabellen TAW 2024](https://www.agentschapmdk.be/nl/bijlage/9b98b44a-3f4c-4ad5-8ca2-35f427631cf2/xlsx-getijtabellen-taw-2024)
 
 ```console
 (getijden) % curl -o xlsx-getijtabellen-taw-2024.zip https://www.agentschapmdk.be/nl/bijlage/9b98b44a-3f4c-4ad5-8ca2-35f427631cf2/xlsx-getijtabellen-taw-2024
@@ -48,7 +48,7 @@ Archive:  xlsx-getijtabellen-taw-2024.zip
   inflating: xlsx-getijtabellen-taw-2024/zeebrugge2024-getijtabel-mTAW.xlsx 
 ```
 
-step 4: voer het script uit en geef het de naam van de uitgepakte
+### step 4: voer het script uit en geef het de naam van de uitgepakte
 
 ```console
 (getijden) % python getijden.py xlsx-getijtabellen-taw-2024
