@@ -10,11 +10,31 @@ Ik zocht een calendar-compatibele versie van de getijden nabij Zeebrugge, en na 
 
 Deze repo bevat een ICS versie van de getijden zoals ze gepubliceerd worden door het [Agentschap Maritieme Dienstverlening en Kust](https://www.agentschapmdk.be/nl/publicaties?category=nautische-publicaties). Daar vind je ZIP bestanden met Excel bestanden met de getijden voor een heel jaar. De software in deze repo verwerkt deze Excel bestanden tot [ICS bestanden](https://github.com/christophevg/getijden/tree/master/ics-getijtabellen-taw-2024) dat je kan importeren in je calendar software.
 
-## Het resultaat
+### 👉 [Getijden nabij Zeebrugge 2024](https://raw.githubusercontent.com/christophevg/getijden/master/ics-getijtabellen-taw-2024/zeebrugge2024-getijtabel-mTAW.ics)
 
-🗓️ [Getijden nabij Zeebrugge 2024](webcal://raw.githubusercontent.com/christophevg/getijden/master/ics-getijtabellen-taw-2024/zeebrugge2024-getijtabel-mTAW.ics)
+### Installatie op iPhone
 
-☝️ _deze link installeert de calendar op Apple devices in de standaard calendar app (on Android,... i don't know 😇)_
+![Stap 1](media/stap1.jpeg)
+
+**Stap 1**: open je calendar app en kies onderaan "calendars"...
+
+![Stap 2](media/stap2.jpeg)
+
+**Stap 2**: kies (opnieuw) onderaan "add calendar"...
+
+![Stap 3](media/stap3.jpeg)
+
+**Stap 3**: kies uit het menu "add subscription calendar"...
+
+![Stap 4](media/stap4.jpeg)
+
+**Stap 4**: kopieer en plak bovenstaande link en druk op "subscribe"...
+
+![Stap 5](media/stap5.jpeg)
+
+**Stap 5**: geef de nieuwe calendar een naam en druk op "add".
+
+Je nieuwe getijden-calendar is klaar!
 
 ## Zelf de software gebruiken
 
