@@ -12,7 +12,7 @@ Deze repo bevat een ICS versie van de getijden zoals ze gepubliceerd worden door
 
 ## Het resultaat
 
-🗓️ <a href="webcal://raw.githubusercontent.com/christophevg/getijden/master/ics-getijtabellen-taw-2024/zeebrugge2024-getijtabel-mTAW.ics">Getijden nabij Zeebrugge 2024</a>
+🗓️ [Getijden nabij Zeebrugge 2024](webcals://raw.githubusercontent.com/christophevg/getijden/master/ics-getijtabellen-taw-2024/zeebrugge2024-getijtabel-mTAW.ics)
 
 ☝️ _deze link installeert de calendar op Apple devices in de standaard calendar app (on Android,... i don't know 😇)_
 
