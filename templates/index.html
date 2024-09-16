@@ -88,14 +88,14 @@
                voor lokatie...
              </button>
              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="webcal://localhost:8000/api/cal/antwerpen">Antwerpen</a></li>
-                <li><a class="dropdown-item" href="webcal://localhost:8000/api/cal/blankenberge">Blankenberge</a></li>
-                <li><a class="dropdown-item" href="webcal://localhost:8000/api/cal/nieuwpoort">Nieuwpoort</a></li>
-                <li><a class="dropdown-item" href="webcal://localhost:8000/api/cal/oostende">Oostende</a></li>
-                <li><a class="dropdown-item" href="webcal://localhost:8000/api/cal/prosperpolder">Prosperpolder</a></li>
-                <li><a class="dropdown-item" href="webcal://localhost:8000/api/cal/vlissingen">Vlissingen</a></li>
-                <li><a class="dropdown-item" href="webcal://localhost:8000/api/cal/wintam">Wintam</a></li>
-                <li><a class="dropdown-item" href="webcal://localhost:8000/api/cal/zeebrugge">Zeebrugge</a></li>
+                <li><a class="dropdown-item" onclick="provide('antwerpen');">Antwerpen</a></li>
+                <li><a class="dropdown-item" onclick="provide('blankenberge');">Blankenberge</a></li>
+                <li><a class="dropdown-item" onclick="provide('nieuwpoort');">Nieuwpoort</a></li>
+                <li><a class="dropdown-item" onclick="provide('oostende');">Oostende</a></li>
+                <li><a class="dropdown-item" onclick="provide('prosperpolder');">Prosperpolder</a></li>
+                <li><a class="dropdown-item" onclick="provide('vlissingen');">Vlissingen</a></li>
+                <li><a class="dropdown-item" onclick="provide('wintam');">Wintam</a></li>
+                <li><a class="dropdown-item" onclick="provide('zeebrugge');">Zeebrugge</a></li>
              </ul>
              <span style="margin-top:6px">&nbsp;&nbsp;&nbsp;Apple Calendar, Outlook,...</span>
            </div>
@@ -114,6 +114,11 @@
       var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
       })
+    </script>
+    <script>
+      function provide(location) {
+        window.location.href = "webcal://" + window.location.host + window.location.pathname + "api/ical/" + location;
+      }
     </script>
   </body>
 </html>
