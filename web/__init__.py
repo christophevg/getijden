@@ -1,15 +1,15 @@
 from flask import Flask, render_template, Response
 
 import json
-from jinja2 import Environment, PackageLoader
-
-env = Environment(loader=PackageLoader("web", "templates"))
-env.filters["jsonify"] = json.dumps
-
+from jinja2 import Environment, FileSystemLoader, PackageLoader
 from pathlib import Path
 
-HERE = Path(__file__).parent
-CALS = HERE / "ics"
+HERE      = Path(__file__).parent
+TEMPLATES = HERE / "templates"
+CALS      = HERE / "ics"
+
+env = Environment(loader=FileSystemLoader(TEMPLATES))
+env.filters["jsonify"] = json.dumps
 
 locations = [ str(xlsx.stem) for xlsx in Path(CALS).glob("*.ics") ]
 
