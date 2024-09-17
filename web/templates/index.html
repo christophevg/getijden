@@ -81,29 +81,50 @@
   
           <p class="lead btn-primary mb-4">
             
-            Voeg getijden nu toe aan je kalender
+            Voeg getijden nu toe aan je kalender...
             
-           <div class="btn-group">
-             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-               voor lokatie...
-             </button>
-             <ul class="dropdown-menu">
-               {% for location in locations %}
-                <li><a class="dropdown-item" onclick="provide('{{ location }}');">{{ location.capitalize() }}</a></li>
-              {% endfor %}
-             </ul>
-             <span style="margin-top:6px">&nbsp;&nbsp;&nbsp;Apple Calendar, Outlook,...</span>
-           </div>
+            <div class="btn-group">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="location_list" data-bs-toggle="dropdown" aria-expanded="false">
+                kies lokatie...
+              </button>
+              <ul class="dropdown-menu">
+                {% for location in locations %}
+                <li><a class="dropdown-item" href="#" onclick="choose('location', '{{ location }}'); return true;">{{ location.capitalize() }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>  
             
-            <br><br><br>
+             <div class="btn-group">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="calendar_list" data-bs-toggle="dropdown" aria-expanded="false">
+                 kies kalender...
+               </button>
+               <ul class="dropdown-menu">
+                 {% for name, config in calendars.items() %}
+                 <li><a class="dropdown-item" href="#" onclick="choose('calendar', '{{ name }}');">{{ config.label }}</a></li>
+                 {% endfor %}
+               </ul>
+             </div>
+
+              <button type="button" id="subscribe_button" class="btn btn-primary disabled" onclick="subscribe()">
+                abonneer
+              </button>
+            
+              <br><br><br>
             
           </p>
         </div>
+        
+        <p class="lead btn-primary mb-4 text-secondary">
+          💡 <i>Deze kalenders worden jaarlijks bijgewerkt.</i><br>
+          🍪 <i>Deze app gebruikt geen <a href="https://christophe.vg/about/Cookies" target="_blank">cookies</a> of andere manieren om jou te volgen</i>.<br>
+          
+        </p>
       </div>
 
     </main>
 
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery-3.7.1.slim.min.js"></script>
     <script>
       var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
       var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -111,14 +132,35 @@
       })
     </script>
     <script>
-      var locations = {{ locations | jsonify }};
-      function provide(location) {
-        if(!location in locations) {
-          alert("Onbekende locatie: " + location);
-          return;
+      var locations = {{ locations | jsonify }},
+          calendars = {{ calendars | jsonify }},
+          selected = {
+            location: null,
+            calendar: null
+          }
+      function choose(key, value) {
+        selected[key] = value;
+        if(selected.location && selected.calendar) {
+          $("#subscribe_button").removeClass("disabled");
         }
-        window.location.href = "webcal://" + window.location.host + window.location.pathname + "api/ical/" + location;
       }
+      function subscribe() {
+        var url = window.location.host + window.location.pathname + "api/ical/" + selected.location,
+            cal = calendars[selected.calendar];
+        if( cal. blank ) {
+          window.open( cal.href + url, "_blank");
+        } else {
+          window.location.href = cal.href + url;
+        }
+      }
+      
+      // update label of button to reflect selection
+      // credits: https://stackoverflow.com/a/42822888
+      $(".dropdown-menu li a").click(function(){
+        var selText = $(this).text();
+        $(this).parents(".btn-group").find(".dropdown-toggle")
+          .html(selText+" <span class='caret'></span>");
+      });
     </script>
   </body>
 </html>
