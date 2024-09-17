@@ -1,21 +1,15 @@
-YEAR?=2024
+LEVEL=taw
 
-NAME=getijtabellen-taw-$(YEAR)
-SRC=xlsx-$(NAME)
-TRG=ics-$(NAME)
-URL="https://www.agentschapmdk.be/nl/publicaties?category=nautische-publicatie"
+SRCS=xlsx-*
+TRG=ics
 
 all: $(TRG)
 
-$(TRG): $(SRC)
-	python getijden.py $<
+$(TRG): $(SRCS)
+	python getijden.py $^
 
-$(SRC): $(SRC).zip
-	unzip -d $@ $<
-
-$(SRC).zip:
-	@echo "🛑 please download $@ from $(URL) first..."
-	@exit 1
+clean:
+	rm -rf $(TRG)
 
 requirements.txt:
 	@cat $@ | cut -d"=" -f1 | xargs pip uninstall -y
@@ -25,5 +19,5 @@ requirements.txt:
 
 .PHONY: requirements.txt
 
-run:
-	gunicorn -w 1 --threads 16 web:app
+web:
+	gunicorn -w 1 --threads 8 web:app

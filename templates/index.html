@@ -69,13 +69,13 @@
     <main>
 
       <div class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 class="display-4 fw-bold">{{ title }}</h1>
         <div class="col-lg-6 mx-auto">
           <p class="lead btn-primary mb-4">
             
-            Deze getijden app, maakt de informatie van het "Agentschap
-            Maritieme Dienstverlening en Kust" direct bruikbaar voor je
-            persoonlijke kalender.
+            Deze getijden app, maakt de informatie gepubliceerd door het "<a
+            href="https://www.agentschapmdk.be/nl/publicaties">Agentschap
+            Maritieme Dienstverlening en Kust</a>" bruikbaar voor je
+            persoonlijke digitale kalender.
             
           </p>
   
@@ -88,14 +88,9 @@
                voor lokatie...
              </button>
              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" onclick="provide('antwerpen');">Antwerpen</a></li>
-                <li><a class="dropdown-item" onclick="provide('blankenberge');">Blankenberge</a></li>
-                <li><a class="dropdown-item" onclick="provide('nieuwpoort');">Nieuwpoort</a></li>
-                <li><a class="dropdown-item" onclick="provide('oostende');">Oostende</a></li>
-                <li><a class="dropdown-item" onclick="provide('prosperpolder');">Prosperpolder</a></li>
-                <li><a class="dropdown-item" onclick="provide('vlissingen');">Vlissingen</a></li>
-                <li><a class="dropdown-item" onclick="provide('wintam');">Wintam</a></li>
-                <li><a class="dropdown-item" onclick="provide('zeebrugge');">Zeebrugge</a></li>
+               {% for location in locations %}
+                <li><a class="dropdown-item" onclick="provide('{{ location }}');">{{ location.capitalize() }}</a></li>
+              {% endfor %}
              </ul>
              <span style="margin-top:6px">&nbsp;&nbsp;&nbsp;Apple Calendar, Outlook,...</span>
            </div>
@@ -116,8 +111,13 @@
       })
     </script>
     <script>
+      var locations = {{ locations | jsonify }};
       function provide(location) {
-        window.location.href = "webcal://" + window.location.host + window.location.pathname + "api/cal/" + location;
+        if(!location in locations) {
+          alert("Onbekende locatie: " + location);
+          return;
+        }
+        window.location.href = "webcal://" + window.location.host + window.location.pathname + "api/ical/" + location;
       }
     </script>
   </body>

@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+import re
 import json
 import datetime
 import dateparser
@@ -8,13 +9,12 @@ from ics import Calendar, Event
 from openpyxl import load_workbook
 
 if len(sys.argv) < 2:
-  print("ERROR: please provide a folder with tide XLSX files.")
+  print("ERROR: please provide one or more folders with tide XLSX files.")
   sys.exit(1)
 
-src_folder = Path(sys.argv[1])
-trg_folder = Path(sys.argv[1].replace("xlsx", "ics"))
+folders = [ Path(folder) for folder in sys.argv[1:] ]
 
-print(f"👉 generating iCal files for {src_folder} into {trg_folder}")
+trg_folder = Path("ics")
 
 def index(chars):
   return [ ord(char[0]) - ord("A") for char in chars ]
@@ -58,16 +58,31 @@ def add(cal, date, high, low):
     event.make_all_day()
     cal.events.add(event)
 
-for xlsx in src_folder.glob("*.xlsx"):
-  cal = Calendar(creator="https://github.com/christophevg/getijden")
-  print(f"👷‍♂️ converting {xlsx}")
+def determine_location(xlsx):
+  # the filename change over time
+  #   antwerpen2024-getijtabel-dmLAT.xlsx
+  #   Antwerpen2025_dmLAT.xlsx
+  #   ^^^^^^^^^
+  location = re.split(r'[0-9]+', xlsx.stem)[0].lower()
+
+  # location names also sometimes change
+  try:
+    location = {
+      "wintam" : "wintamsluis"
+    }[location]
+  except KeyError:
+    pass
+
+  return location
+
+def load(xlsx, cal):
   wb = load_workbook(filename=xlsx)
 
   # process all worksheets
   for ws in wb.worksheets:
-    # extract eacht month according to configuration
+    # extract each month according to configuration
     for month_cell, params in months.items():
-      month = ws[month_cell].value
+      month_year = ws[month_cell].value
 
       # track previous day to fill in the blanks
       prev_day = [ None for _ in params["day"] ]
@@ -87,12 +102,30 @@ for xlsx in src_folder.glob("*.xlsx"):
             day = prev_day[index]
 
           # create date
-          date = dateparser.parse(f"{day} {month}")
+          date = dateparser.parse(f"{day} {month_year}")
 
           # create event
           add(cal, date, high, low)
           
-  # create ICS file
-  trg_folder.mkdir(parents=True, exist_ok=True)
-  with open( trg_folder / Path(xlsx.name).with_suffix(".ics"), "w") as f:
+# load xlsx files into calendars
+
+cals = {}
+for folder in folders:
+  print(f"🗂️ loading tide information from {folder}")
+  for xlsx in folder.glob("*.xlsx"):
+    location = determine_location(xlsx)
+    print(f"👷‍♂️ processing {location}")
+    try:
+      cal = cals[location]
+    except KeyError:
+      cal = Calendar(creator="https://github.com/christophevg/getijden")
+      cals[location] = cal
+    load(xlsx, cal)
+
+# create ICS files
+trg_folder.mkdir(parents=True, exist_ok=True)
+for name, cal in cals.items():
+  trg_file = trg_folder / Path(name).with_suffix(".ics")
+  print(f"📅 creating {trg_file}")
+  with open( trg_file, "w") as f:
     f.write(cal.serialize())

@@ -1,10 +1,17 @@
 from flask import Flask, render_template, Response
 
+import json
+from jinja2 import Environment, PackageLoader
+
+env = Environment(loader=PackageLoader("web", "templates"))
+env.filters["jsonify"] = json.dumps
+
 from pathlib import Path
 
-
 HERE = Path(__file__).parent
-CALS = HERE / "ics-getijtabellen-taw-2024"
+CALS = HERE / "ics"
+
+locations = [ str(xlsx.stem) for xlsx in Path(CALS).glob("*.ics") ]
 
 app = Flask(
   "getijden",
@@ -17,9 +24,10 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 @app.route("/")
 def home():
-  return render_template("index.html", title="Getijden")
+  template = env.get_template("index.html")
+  return template.render(locations=locations)
 
-@app.route("/api/cal/<location>")
+@app.route("/api/ical/<location>")
 def cal(location):
-  cal = CALS / f"{location}2024-getijtabel-mTAW.ics"
+  cal = CALS / f"{location}.ics"
   return Response(cal.read_text(), mimetype="text/calendar")
