@@ -63,7 +63,9 @@ def determine_location(xlsx):
   #   antwerpen2024-getijtabel-dmLAT.xlsx
   #   Antwerpen2025_dmLAT.xlsx
   #   ^^^^^^^^^
-  location = re.split(r'[0-9]+', xlsx.stem)[0].lower()
+  #   Antwerpen_2026_dmLAT.xlsx
+  #   ^^^^^^^^^
+  location = re.split(r'[0-9_]+', xlsx.stem)[0].lower()
 
   # location names also sometimes change
   try:
@@ -86,7 +88,7 @@ def load(xlsx, cal):
 
       # track previous day to fill in the blanks
       prev_day = [ None for _ in params["day"] ]
-      
+
       # process all rows
       for row in ws.iter_rows(min_row=params["first"], values_only=True):
 
@@ -106,7 +108,7 @@ def load(xlsx, cal):
 
           # create event
           add(cal, date, high, low)
-          
+
 # load xlsx files into calendars
 
 cals = {}
