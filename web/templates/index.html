@@ -15,13 +15,13 @@
 
     <meta name="theme-color" content="#fafafa">
     <link rel="stylesheet" href="./style.css">
-    
+
     <meta name="title"       property="og:type"        content="website"/>
     <meta name="author"      property="og:author"      content="Christophe VG"/>
     <meta name="title"       property="og:title"       content="Getijden"/>
-    <meta name="image"       property="og:image"       content="//getijden.app.homemadebycvg.com/images/social.png"/>
+    <meta name="image"       property="og:image"       content="//getijden.homemadebycvg.com/images/social.png"/>
     <meta name="description" property="og:description" content="Getijden langs de Belgische kust, in verschillende formaten, vooral kant en klaar voor jouw kalender app."/>
-    <meta name="url"         property="og:url"         content="//getijden.app.homemadebycvg.com"/>
+    <meta name="url"         property="og:url"         content="//getijden.homemadebycvg.com"/>
   </head>
 
   <body>
@@ -71,18 +71,18 @@
       <div class="px-4 pt-5 my-5 text-center border-bottom">
         <div class="col-lg-6 mx-auto">
           <p class="lead btn-primary mb-4">
-            
+
             Deze getijden app, maakt de informatie gepubliceerd door het "<a
             href="https://www.agentschapmdk.be/nl/publicaties">Agentschap
             Maritieme Dienstverlening en Kust</a>" bruikbaar voor je
             persoonlijke digitale kalender.
-            
+
           </p>
-  
+
           <p class="lead btn-primary mb-4">
-            
+
             Voeg getijden nu toe aan je kalender...
-            
+
             <div class="btn-group">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="location_list" data-bs-toggle="dropdown" aria-expanded="false">
                 kies lokatie...
@@ -92,8 +92,8 @@
                 <li><a class="dropdown-item" href="#" onclick="choose('location', '{{ location }}'); return true;">{{ location.capitalize() }}</a></li>
                 {% endfor %}
               </ul>
-            </div>  
-            
+            </div>
+
              <div class="btn-group">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="calendar_list" data-bs-toggle="dropdown" aria-expanded="false">
                  kies kalender...
@@ -108,16 +108,16 @@
               <button type="button" id="subscribe_button" class="btn btn-primary disabled" onclick="subscribe()">
                 abonneer
               </button>
-            
+
               <br><br><br>
-            
+
           </p>
         </div>
-        
+
         <p class="lead btn-primary mb-4 text-secondary">
           💡 <i>Deze kalenders worden jaarlijks bijgewerkt.</i><br>
           🍪 <i>Deze app gebruikt geen <a href="https://christophe.vg/about/Cookies" target="_blank">cookies</a> of andere manieren om jou te volgen</i>.<br>
-          
+
         </p>
       </div>
 
@@ -153,7 +153,7 @@
           window.location.href = cal.href + url;
         }
       }
-      
+
       // update label of button to reflect selection
       // credits: https://stackoverflow.com/a/42822888
       $(".dropdown-menu li a").click(function(){

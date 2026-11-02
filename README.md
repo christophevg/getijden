@@ -10,7 +10,7 @@ Ik zocht een calendar-compatibele versie van de getijden nabij Zeebrugge, en na 
 
 Deze repo bevat een ICS versie van de getijden zoals ze gepubliceerd worden door het [Agentschap Maritieme Dienstverlening en Kust](https://www.agentschapmdk.be/nl/publicaties?category=nautische-publicaties). Daar vind je ZIP bestanden met Excel bestanden met de getijden voor een heel jaar. De software in deze repo verwerkt deze Excel bestanden tot [ICS bestanden](https://github.com/christophevg/getijden/tree/master/ics-getijtabellen-taw-2024) dat je kan importeren in je calendar software.
 
-## Bezoek [https://getijden.app.homemadebycvg.com](https://getijden.app.homemadebycvg.com)
+## Bezoek [https://getijden.homemadebycvg.com](https://getijden.homemadebycvg.com)
 
 Deze webapp laat toe om een locatie te kiezen en je favoriete kalender software. Met 1 click abonneer je je vervolgens op die kalender.
 
@@ -80,4 +80,3 @@ Archive:  xlsx-getijtabellen-taw-2024.zip
 antwerpen.ics     nieuwpoort.ics    prosperpolder.ics wintamsluis.ics
 blankenberge.ics  oostende.ics      vlissingen.ics    zeebrugge.ics
 ```
-
